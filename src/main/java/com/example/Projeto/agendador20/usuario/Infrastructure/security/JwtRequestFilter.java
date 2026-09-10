@@ -1,4 +1,4 @@
-package com.example.Projeto.agendador20.Infrastructure.security;
+package com.example.Projeto.agendador20.usuario.Infrastructure.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

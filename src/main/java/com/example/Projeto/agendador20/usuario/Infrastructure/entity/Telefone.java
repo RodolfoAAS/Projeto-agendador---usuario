@@ -1,4 +1,4 @@
-package com.example.Projeto.agendador20.Infrastructure.entity;
+package com.example.Projeto.agendador20.usuario.Infrastructure.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
