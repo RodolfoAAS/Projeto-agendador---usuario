@@ -1,6 +1,6 @@
-package com.example.Projeto.agendador20.Infrastructure.repository;
+package com.example.Projeto.agendador20.usuario.Infrastructure.repository;
 
-import com.example.Projeto.agendador20.Infrastructure.entity.Telefone;
+import com.example.Projeto.agendador20.usuario.Infrastructure.entity.Telefone;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

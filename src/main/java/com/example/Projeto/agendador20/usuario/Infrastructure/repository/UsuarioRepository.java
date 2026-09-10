@@ -1,6 +1,6 @@
-package com.example.Projeto.agendador20.Infrastructure.repository;
+package com.example.Projeto.agendador20.usuario.Infrastructure.repository;
 
-import com.example.Projeto.agendador20.Infrastructure.entity.Usuario;
+import com.example.Projeto.agendador20.usuario.Infrastructure.entity.Usuario;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,9 +1,9 @@
-package com.example.Projeto.agendador20.Infrastructure.security;
+package com.example.Projeto.agendador20.usuario.Infrastructure.security;
 
 
 
-import com.example.Projeto.agendador20.Infrastructure.entity.Usuario;
-import com.example.Projeto.agendador20.Infrastructure.repository.UsuarioRepository;
+import com.example.Projeto.agendador20.usuario.Infrastructure.entity.Usuario;
+import com.example.Projeto.agendador20.usuario.Infrastructure.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

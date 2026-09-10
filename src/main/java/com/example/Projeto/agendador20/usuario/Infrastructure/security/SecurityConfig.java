@@ -1,4 +1,4 @@
-package com.example.Projeto.agendador20.Infrastructure.security;
+package com.example.Projeto.agendador20.usuario.Infrastructure.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
