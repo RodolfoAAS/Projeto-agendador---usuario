@@ -3,6 +3,7 @@ package com.example.Projeto.agendador20.usuario.Infrastructure.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,7 +26,7 @@ public class Endereco {
     private String estado;
     @Column(name = "cep", length = 9,nullable = false)
     private String cep;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", nullable = false, referencedColumnName = "id")
     private Usuario usuario;
 

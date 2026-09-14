@@ -3,6 +3,7 @@ package com.example.Projeto.agendador20.usuario.Infrastructure.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class Telefone {
     private String numero;
     @Column(name = "DDD", length = 3,nullable = false)
     private String ddd;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 }

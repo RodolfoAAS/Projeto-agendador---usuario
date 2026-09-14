@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,9 +24,9 @@ public class Usuario {
     @Column(name = "senha",nullable = false)
     private String senha;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Endereco> enderecos;
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Telefone> telefones;
 
 }
