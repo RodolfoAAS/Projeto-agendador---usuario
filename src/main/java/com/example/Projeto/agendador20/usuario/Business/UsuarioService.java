@@ -6,6 +6,7 @@ import com.example.Projeto.agendador20.usuario.Infrastructure.entity.Usuario;
 import com.example.Projeto.agendador20.usuario.Infrastructure.exceptions.ResourceNotFoundException;
 import com.example.Projeto.agendador20.usuario.Infrastructure.repository.UsuarioRepository;
 import com.example.Projeto.agendador20.usuario.Infrastructure.exceptions.ConflictException;
+import com.example.Projeto.agendador20.usuario.Infrastructure.security.JwtUtil;
 import lombok.AllArgsConstructor;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,11 +18,25 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final UsuarioConverter usuarioConverter;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
     public UsuarioDTO salvaUsuario(UsuarioDTO usuarioDTO) {
         emailExiste(usuarioDTO.getEmail());
         usuarioDTO.setSenha(passwordEncoder.encode(usuarioDTO.getSenha()));
         Usuario usuario = usuarioConverter.paraUsuario(usuarioDTO);
+
+        if (usuario.getEnderecos() != null) {
+            usuario.getEnderecos().forEach(endereco -> {
+                endereco.setUsuario(usuario);
+            });
+        }
+
+        if (usuario.getTelefones() != null) {
+            usuario.getTelefones().forEach(telefone -> {
+                telefone.setUsuario(usuario);
+            });
+        }
+
         return usuarioConverter.paraUsuarioDTO(usuarioRepository.save(usuario));
     }
 
@@ -44,5 +59,14 @@ public class UsuarioService {
     }
     public void deletaUsuarioPorEmail(String email){
         usuarioRepository.deleteByEmail(email);
+    }
+
+    public UsuarioDTO atualizaDadosUsuario(String token, UsuarioDTO usuarioDTO) {
+        String email = jwtUtil.extrairEmailToken(token.substring(7));
+        usuarioDTO.setSenha(usuarioDTO.getSenha() != null ? passwordEncoder.encode(usuarioDTO.getSenha()) : null);
+        Usuario usuarioEntity = usuarioRepository.findByEmail(email).orElseThrow(() ->
+                new ResourceNotFoundException("Email não encontrado"));
+        Usuario usuario = usuarioConverter.updateUsuario(usuarioDTO, usuarioEntity);
+        return usuarioConverter.paraUsuarioDTO(usuarioRepository.save(usuario));
     }
 }
