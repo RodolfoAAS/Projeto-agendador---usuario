@@ -24,9 +24,9 @@ public class Usuario {
     @Column(name = "senha",nullable = false)
     private String senha;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Endereco> enderecos;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
     private List<Telefone> telefones;
 
 }

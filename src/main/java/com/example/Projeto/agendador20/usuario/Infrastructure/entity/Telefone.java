@@ -18,7 +18,7 @@ public class Telefone {
     private String numero;
     @Column(name = "DDD", length = 3,nullable = false)
     private String ddd;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false, referencedColumnName = "id")
     private Usuario usuario;
 }
