@@ -26,7 +26,7 @@ public class Endereco {
     private String estado;
     @Column(name = "cep", length = 9,nullable = false)
     private String cep;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false, referencedColumnName = "id")
     private Usuario usuario;
 

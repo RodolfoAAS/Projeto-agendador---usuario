@@ -1,7 +1,10 @@
 package com.example.Projeto.agendador20.usuario.Controller;
 
 import com.example.Projeto.agendador20.usuario.Business.UsuarioService;
+import com.example.Projeto.agendador20.usuario.Business.dto.EnderecoDTO;
+import com.example.Projeto.agendador20.usuario.Business.dto.TelefoneDTO;
 import com.example.Projeto.agendador20.usuario.Business.dto.UsuarioDTO;
+import com.example.Projeto.agendador20.usuario.Infrastructure.entity.Endereco;
 import com.example.Projeto.agendador20.usuario.Infrastructure.entity.Usuario;
 import com.example.Projeto.agendador20.usuario.Infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +36,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<Usuario> buscaUsuarioPorEmail(@RequestParam("email") String email) {
+    public ResponseEntity<UsuarioDTO> buscaUsuarioPorEmail(@RequestParam("email") String email) {
         return ResponseEntity.ok(usuarioService.buscaUsuarioPorEmail(email));
     }
 
@@ -46,5 +49,13 @@ public class UsuarioController {
     @PutMapping
     public ResponseEntity<UsuarioDTO> atualizaDadosUsuario(@RequestBody UsuarioDTO dto, @RequestHeader("Authorization") String token) {
         return ResponseEntity.ok(usuarioService.atualizaDadosUsuario(token, dto));
+    }
+    @PutMapping("/endereco")
+    public ResponseEntity<EnderecoDTO> atualizaEnderecoUsuario(@RequestBody EnderecoDTO enderecoDTO, @RequestParam("id") Long id) {
+        return ResponseEntity.ok(usuarioService.atualizaEnderecosUsuario(id, enderecoDTO));
+    }
+    @PutMapping("/telefone")
+    public ResponseEntity<TelefoneDTO> atualizaTelefoneUsuario(@RequestBody TelefoneDTO telefoneDTO, @RequestParam("id") Long id) {
+        return ResponseEntity.ok(usuarioService.atualizaTelefoneUsuario(id, telefoneDTO));
     }
 }
